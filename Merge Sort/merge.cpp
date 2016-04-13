@@ -24,7 +24,7 @@ void merge(int *lista, int idx_i, int idx_m, int idx_f)
 	int L[n1 + 1];
 	int R[n2 + 1];
 
-	int tmp = /*big(lista, idx_f-1)*/ 100000;
+	int tmp = big(lista, idx_f-1);
 	L[n1] = tmp;
 	R[n2] = tmp;
 
