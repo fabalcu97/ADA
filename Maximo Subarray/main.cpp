@@ -5,6 +5,7 @@
 using namespace std;
 
 void max_subarray(vector<int>, int, int);
+void find_max_sa(vector<int>, int, int);
 void max_crossing_subarray(vector<int>, int, int, int);
 int smaller(vector<int>);
 
@@ -25,16 +26,20 @@ M_Res Max_SA;
 
 int main(){
 
-	vector<int> A = {
-					13, -3, -25,
-					20, -3, -16,
-					-23, 18, 20,
-					-7, 12, -5,
-					-22, 15, -4,
-					7};
-	max_subarray(A, 0, A.size());
-	cout<<Max_SA.high<<endl;
+	vector<int> A = { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+
+    clock_t tStart1 = clock();
+	find_max_sa(A, 0, A.size());
+	cout<<"Tiempo: "<<(double)(clock() - tStart1)/CLOCKS_PER_SEC<<endl;
 	cout<<Max_SA.low<<endl;
+	cout<<Max_SA.high<<endl;
+	cout<<Max_SA.A<<endl<<endl;
+
+    clock_t tStart = clock();
+	max_subarray(A, 0, A.size());
+	cout<<"Tiempo: "<<(double)(clock() - tStart)/CLOCKS_PER_SEC<<endl;
+	cout<<Max_SA.low<<endl;
+	cout<<Max_SA.high<<endl;
 	cout<<Max_SA.A<<endl;
 }
 
@@ -123,3 +128,32 @@ void max_subarray(vector<int> A, int low, int high){
 	}
 
 }
+
+void find_max_sa(vector<int> A, int low, int high){
+    int left = 0,
+        rigth = 0,
+        sum = 0,
+        cs = 0,
+        j = 0;
+
+    sum = smaller(A);
+
+    for(int i = low; i < high; i++){
+        cs = 0;
+        for (j = i; j < high; j++){
+            cs += A[j];
+
+            if(sum < cs){
+                sum = cs;
+                left = i;
+                rigth = j;
+            }
+        }
+    }
+    Max_SA.low = left;
+	Max_SA.high = rigth;
+	Max_SA.A = sum;
+    return;
+}
+
+

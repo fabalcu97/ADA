@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1460526538 source:/home/fabricio/Programming/V Semestre/ADA/Matrix/Iterative/Matrix/main.cpp
+	<iostream>
+	<vector>
+
