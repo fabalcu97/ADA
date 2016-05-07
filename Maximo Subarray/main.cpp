@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
+#include <random>
 
 using namespace std;
 
@@ -26,8 +27,15 @@ M_Res Max_SA;
 
 int main(){
 
-	vector<int> A = { 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7};
+    srand(time(NULL));
 
+	vector<int> A;
+
+    for(int i = 0; i < 8000; i++){
+        A.push_back(rand() % 1000);
+    }
+
+    cout<<"holi"<<endl;
     clock_t tStart1 = clock();
 	find_max_sa(A, 0, A.size());
 	cout<<"Tiempo: "<<(double)(clock() - tStart1)/CLOCKS_PER_SEC<<endl;
